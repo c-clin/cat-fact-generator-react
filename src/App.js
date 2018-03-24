@@ -79,16 +79,10 @@ class App extends Component {
     $('.twitterText').css('font-family', "'Lobster', cursive");
   }
 
-  transition() {
-    $('.box').css('border','1px solid #000000');
-  }
-
   onClick() {
     this.getCatFact();
     this.getCat();
     this.insertTwitter();
-    this.transition();
-    console.log(this.state);
   }
 
   render() {
