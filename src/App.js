@@ -80,6 +80,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <div className="container">
         <h1 className="title">Random Cat Fact Generator</h1>
           <div className="unsplash">
             <button onClick={this.onClick.bind(this)}>get cat!</button>
@@ -90,7 +91,8 @@ class App extends Component {
               </div>
               <figcaption>{this.state.resultUser}</figcaption>
             </figure>
-          </div>        
+          </div>    
+        </div>    
       </div>
     );
   }

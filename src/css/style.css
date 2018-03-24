@@ -1,20 +1,45 @@
-.title {
-  text-align: center;
-  font-size: 2.5em;
-  font-family: 'Lobster', cursive;
+.App {
+  .opacity: 0.7;
+}
+
+.container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+    background: linear-gradient( 75deg,
+      rgba(226, 138, 221, 0.7), 
+      rgba(255, 203, 221, 0.7),
+      rgba(255, 0, 0, 0.7)
+    ), url('../img/cat-background.jpg') no-repeat center;
+  /*// Photo by Ilnur Kalimullin on Unsplash*/
+  background-size: cover;
+  
 }
 
 
+.title {
+  text-align: center;
+  font-size: 2.6em;
+  font-family: 'Lobster', cursive;
+  color: #ffb3ec;
+  text-shadow: 0px 1.5px 10px #000000;
+}
 
 .unsplash {
     margin: auto;
-    margin-top: 19px;
+    margin-top: 19px;s
     display: block;
     position: relative;
 }
 
 .unsplash button {
-    padding: 20px 25px;
+    border-radius: 50%;
+    padding: 18px 40px;
+    background: transparent;
     font-size: 25px;
     border: none;
     outline: none;
@@ -26,15 +51,23 @@
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
+    transition: .4s ease-in-out;
+    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .4s ease-in-out;
 }
 
+
 .unsplash button:hover {
-  background-color: orange;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #f7d794;
   cursor: pointer;
+  transition: .4s ease-in-out;
+  -webkit-transition: .4s ease-in-out;
+  -moz-transition: .4s ease-in-out;
 }
     
  .unsplash .randomCatPhoto {
-  width: max-content;
+  max-width: 500px;
   padding-right: 0px;
   margin: auto;
   margin-top: 20px;
@@ -42,50 +75,12 @@
 
 .unsplash .box {
   position: relative;
-  max-height: 330px;
+  max-height: 310px;
   overflow: hidden;
 }
 
 .unsplash img {
-  width: 550px;
-  margin: auto;
-  animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
-}
-
-@keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
+  width: 100%;
 }
 
 .unsplash .fact {
@@ -104,6 +99,7 @@
 }
 
 .unsplash figcaption {
-  font-size: small;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-size: 0.6em;
   text-align: center; 
 }
