@@ -54,8 +54,6 @@ class App extends Component {
     // });
   }
 
-
-
   getCat() {
     $.getJSON(imageURL).done(function(data) {
       var resultPhoto = data.urls.regular;
@@ -67,13 +65,20 @@ class App extends Component {
     })
   }  
 
+  insertTwitter() {
+    $('.twitterLink').html('<a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i><span className="twitterText"> Tweet it!</span></a>');
+    // font not working
+    $('.twitterText').css('font-family', "'Lobster', cursive");
+  }
+
   transition() {
-    $('.box').css('border','1px solid #000000')
+    $('.box').css('border','1px solid #000000');
   }
 
   onClick() {
     this.getCatFact();
     this.getCat();
+    this.insertTwitter();
     this.transition();
   }
 
@@ -88,10 +93,12 @@ class App extends Component {
               <div className="box">
                 <img id="img" src={this.state.resultCat} />
                 <p className="fact">{this.state.resultFact}</p>
-              </div>
+              </div>               
               <figcaption>{this.state.resultUser}</figcaption>
             </figure>
-          </div>    
+          </div> 
+          <span className="twitterLink">
+          </span> 
         </div>    
       </div>
     );

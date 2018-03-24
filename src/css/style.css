@@ -20,7 +20,6 @@
   
 }
 
-
 .title {
   text-align: center;
   font-size: 2.6em;
@@ -103,3 +102,28 @@
   font-size: 0.6em;
   text-align: center; 
 }
+
+.twitterLink {
+  position: absolute;
+  color: dodgerblue;
+  left: 75%;
+  bottom: 20%;
+}
+
+.twitterLink a{
+  border-radius: 48%;
+  padding: 7px 13px;
+  text-decoration: none;
+  color: #0084b4;
+}
+
+.twitterLink a:hover {
+  background-color: #0084b4;
+  color: white;
+}
+
+.twitterLink .twitterText {
+  font-family: 'Lobster', cursive;
+}
+
+
