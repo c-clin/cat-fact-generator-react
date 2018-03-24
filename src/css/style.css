@@ -74,7 +74,7 @@
 
 .unsplash .box {
   position: relative;
-  max-height: 310px;
+  max-height: 300px;
   overflow: hidden;
 }
 
@@ -122,7 +122,6 @@
   color: white;
 }
 
-/* font not working */
 .twitterLink .twitterText {
   font-family: 'Lobster', cursive;
 }
@@ -156,7 +155,7 @@
 
     .unsplash .fact {
       width: 80%;
-      font-size: 6vw;
+      font-size: 4vw;
     }
 
     .twitterLink {
@@ -197,3 +196,5 @@
       display: none;
     }
 }
+
+

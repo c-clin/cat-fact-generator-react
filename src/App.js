@@ -21,7 +21,16 @@ class App extends Component {
       resultUser: []
     };
     this.getCat = this.getCat.bind(this);
+    this.getCatFact = this.getCatFact.bind(this);
+    this.insertTwitter = this.insertTwitter.bind(this);
+
   }
+
+  componentDidMount() {
+    this.getCat();
+    this.getCatFact();
+  }
+
 
   getCatFact() {
     let randomFact = catFacts.random();
@@ -66,8 +75,7 @@ class App extends Component {
   }  
 
   insertTwitter() {
-    $('.twitterLink').html('<a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i><span class="twitterText"> Tweet it!</span></a>');
-    // font not working
+    $('.twitterLink').html(``);
     $('.twitterText').css('font-family', "'Lobster', cursive");
   }
 
@@ -80,6 +88,7 @@ class App extends Component {
     this.getCat();
     this.insertTwitter();
     this.transition();
+    console.log(this.state);
   }
 
   render() {
@@ -98,11 +107,13 @@ class App extends Component {
             </figure>
           </div> 
           <span className="twitterLink">
+            <a href={"https://twitter.com/intent/tweet?text=" + this.state.resultFact + " - Random Cat Fact Generator"}  target='_blank'><i className='fa fa-twitter-square' aria-hidden='true'></i><span className='twitterText'> Tweet</span></a>
           </span> 
         </div>    
       </div>
     );
   }
 }
+
 
 export default App;
