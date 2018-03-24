@@ -66,7 +66,7 @@ class App extends Component {
   }  
 
   insertTwitter() {
-    $('.twitterLink').html('<a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i><span className="twitterText"> Tweet it!</span></a>');
+    $('.twitterLink').html('<a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i><span class="twitterText"> Tweet it!</span></a>');
     // font not working
     $('.twitterText').css('font-family', "'Lobster', cursive");
   }

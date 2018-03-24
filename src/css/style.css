@@ -106,8 +106,8 @@
 .twitterLink {
   position: absolute;
   color: dodgerblue;
-  left: 75%;
-  bottom: 20%;
+  left: 80%;
+  bottom: 10%;
 }
 
 .twitterLink a{
@@ -122,8 +122,78 @@
   color: white;
 }
 
+/* font not working */
 .twitterLink .twitterText {
   font-family: 'Lobster', cursive;
 }
 
 
+/*mediq query*/
+
+  @media only screen and (min-width: 640px) and (max-width: 768px) {
+    .unsplash .randomCatPhoto {
+      max-width: 70%;
+    }
+
+    .twitterLink {
+      left: 75%;
+      bottom: 10%;
+    }
+  } 
+
+  @media only screen and (min-width: 320px) and (max-width: 639px) {
+    .title {
+      font-size: 2.3em;
+    }
+    .unsplash .randomCatPhoto {
+      max-width: 80%;
+    }
+
+    .unsplash .button {
+      font-size: 20px;
+      padding: 18px 36px;
+    }
+
+    .unsplash .fact {
+      width: 80%;
+      font-size: 6vw;
+    }
+
+    .twitterLink {
+      left: 75%;
+      bottom: 5%;
+    }
+
+    .twitterText {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 319px) {
+    .title {
+      font-size: 1.7em;
+    }
+
+    .unsplash .fact {
+      width: 80%;
+      font-size: 6vw;
+    }
+
+    .unsplash .button {
+      font-size: 16px;
+      padding: 16px 34px;
+    }
+
+    .unsplash .randomCatPhoto {
+      max-width: 85%;
+    }
+
+    .twitterLink {
+      left: 75%;
+      bottom: 5%;
+    }
+
+    .twitterText {
+      display: none;
+    }
+}
