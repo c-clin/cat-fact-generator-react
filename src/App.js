@@ -11,10 +11,8 @@ var factURL = "https://the-cat-fact.herokuapp.com/api/randomfact";
 const clientID = "8a3b86c522f37241f107be57b5b3713407e5e3c59942bde90f13a62846da1106"
 const query = 'cats'
 var imageURL = `https://api.unsplash.com/photos/random?&query=${query}&client_id=${clientID}`;
-let randomFact = catFacts.random();
 
 class App extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -26,8 +24,7 @@ class App extends Component {
   }
 
   getCatFact() {
-    
-    console.log(randomFact);
+    let randomFact = catFacts.random();
     this.setState({resultFact: randomFact})
     // $.ajax({
     //   url: factURL,
@@ -61,31 +58,36 @@ class App extends Component {
 
   getCat() {
     $.getJSON(imageURL).done(function(data) {
-      var resultPhoto = data.urls.small;
+      var resultPhoto = data.urls.regular;
       var user = data.user.name;
       this.setState({resultCat: resultPhoto, resultUser: 'Awesome photo by: ' + user});
     }.bind(this))
     .fail(function(error) {
-      throw new Error('fail(): ' + error);
+      console.log('fail(): ' + error);
     })
   }  
+
+  transition() {
+    $('.box').css('border','1px solid #000000')
+  }
 
   onClick() {
     this.getCatFact();
     this.getCat();
+    this.transition();
   }
 
   render() {
     return (
       <div className="App">
         <h1 className="title">Random Cat Fact Generator</h1>
-
-
           <div className="unsplash">
             <button onClick={this.onClick.bind(this)}>get cat!</button>
-            <p className="fact">{this.state.resultFact}</p>
             <figure className="randomCatPhoto">
-              <img src={this.state.resultCat} />
+              <div className="box">
+                <img id="img" src={this.state.resultCat} />
+                <p className="fact">{this.state.resultFact}</p>
+              </div>
               <figcaption>{this.state.resultUser}</figcaption>
             </figure>
           </div>        
