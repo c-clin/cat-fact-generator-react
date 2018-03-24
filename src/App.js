@@ -78,12 +78,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Random Cat Fact Generator</h1>
+        <h1 className="title">Random Cat Fact Generator</h1>
 
 
           <div className="unsplash">
             <button onClick={this.onClick.bind(this)}>get cat!</button>
-            <h2>{this.state.resultFact}</h2>
+            <p className="fact">{this.state.resultFact}</p>
             <figure className="randomCatPhoto">
               <img src={this.state.resultCat} />
               <figcaption>{this.state.resultUser}</figcaption>

@@ -1,7 +1,16 @@
+.title {
+  text-align: center;
+}
+
+.fact {
+  text-align: center;
+}
+
 .unsplash {
     margin: auto;
     margin-top: 19px;
-    display: inline-block;
+    display: block;
+    position: relative;
 }
 
 .unsplash button {
@@ -11,6 +20,11 @@
     outline: none;
     display: inline-block;
     text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
 }
     
  .unsplash .randomCatPhoto {
