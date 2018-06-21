@@ -4,12 +4,13 @@ import $ from 'jquery';
 import './css/style.css';
 
 const catFacts = require('cat-facts');
-var factURL = "https://the-cat-fact.herokuapp.com/api/randomfact";
+// var factURL = 'https://the-cat-fact.herokuapp.com/api/randomfact';
 
 // https://api.unsplash.com/photos/random?&query=cats&client_id=8a3b86c522f37241f107be57b5b3713407e5e3c59942bde90f13a62846da1106
 // unsplash cat image
-const clientID = "8a3b86c522f37241f107be57b5b3713407e5e3c59942bde90f13a62846da1106"
-const query = 'cats'
+const clientID =
+  '8a3b86c522f37241f107be57b5b3713407e5e3c59942bde90f13a62846da1106';
+const query = 'cats';
 var imageURL = `https://api.unsplash.com/photos/random?&query=${query}&client_id=${clientID}`;
 
 class App extends Component {
@@ -18,12 +19,13 @@ class App extends Component {
     this.state = {
       resultFact: [],
       resultCat: [],
-      resultUser: []
+      resultUser: [],
+      factLoading: false,
+      imgLoading: false
     };
     this.getCat = this.getCat.bind(this);
     this.getCatFact = this.getCatFact.bind(this);
     this.insertTwitter = this.insertTwitter.bind(this);
-
   }
 
   componentDidMount() {
@@ -31,83 +33,83 @@ class App extends Component {
     this.getCatFact();
   }
 
-
   getCatFact() {
     let randomFact = catFacts.random();
-    this.setState({resultFact: randomFact})
-    // $.ajax({
-    //   url: factURL,
-    //   type: 'GET',
-    //   // dataType: 'jsonp',
-    //   // jsonp: false,
-    //   // crossDomain: true,
-    //   contentType: 'text/plain',
-    //   xhrFields: {
-    //     withCredentials: false
-    //   },
-    //   headers: {
-    //             // "Accept" : "application/javscript",
-    //             // "Content-Type": "application/javascript",
-    //             // "Access-Control-Allow-Origin" : "*",
-    //             "Access-Control-Allow-Header" : "header"
-    //   },
-    //   cashe: false,
-    //   success: function(data) {
-    //     var fact = data.data.fact;
-    //    console.log(fact);
-    //     this.setState({resultFact: fact});
-    //   }.bind(this),
-    //   error: function(error) {
-    //    console.log('fail(): ' + error);
-    //   }.bind(this)
-    // });
+    this.setState({ resultFact: randomFact });
+    this.setState({ factLoading: false });
   }
 
   getCat() {
-    $.getJSON(imageURL).done(function(data) {
-      var resultPhoto = data.urls.regular;
-      var user = data.user.name;
-      this.setState({resultCat: resultPhoto, resultUser: 'Awesome photo by: ' + user});
-    }.bind(this))
-    .fail(function(error) {
-      console.log('fail(): ' + error);
-    })
-  }  
+    $.getJSON(imageURL)
+      .done(
+        function(data) {
+          var resultPhoto = data.urls.regular;
+          var user = data.user.name;
+          this.setState({
+            resultCat: resultPhoto,
+            resultUser: 'Awesome photo by: ' + user
+          });
+          this.setState({ imgLoading: false });
+        }.bind(this)
+      )
+      .fail(function(error) {
+        console.log('fail(): ' + error);
+      });
+  }
 
   insertTwitter() {
     $('.twitterLink').html(``);
     $('.twitterText').css('font-family', "'Lobster', cursive");
   }
 
-  onClick() {
+  onClick = () => {
+    this.setState({ factLoading: true, imgLoading: true });
     this.getCatFact();
-    this.getCat();
     this.insertTwitter();
-  }
+    this.getCat();
+  };
 
   render() {
+    let renderContent;
+    if (!this.state.imgLoading && !this.state.factLoading) {
+      renderContent = (
+        <figure className="randomCatPhoto">
+          <div className="box">
+            <img id="img" src={this.state.resultCat} />
+            <p className="fact">{this.state.resultFact}</p>
+          </div>
+          <figcaption>{this.state.resultUser}</figcaption>
+        </figure>
+      );
+    } else {
+      renderContent = <div class="loader">Loading...</div>;
+    }
+
     return (
       <div className="App">
-      <div className="container">
-        <h1 className="title">Random Cat Fact Generator</h1>
+        <div className="container">
+          <h1 className="title">Random Cat Fact Generator</h1>
           <div className="unsplash">
-            <button onClick={this.onClick.bind(this)}>get cat!</button>
-            <figure className="randomCatPhoto">
-              <div className="box">
-                <img id="img" src={this.state.resultCat} />
-                <p className="fact">{this.state.resultFact}</p>
-              </div>               
-              <figcaption>{this.state.resultUser}</figcaption>
-            </figure>
-          </div> 
+            <button onClick={this.onClick}>get cat!</button>
+            {renderContent}
+          </div>
           <span className="twitterLink">
-            <a href={"https://twitter.com/intent/tweet?text=" + this.state.resultFact + " - Random Cat Fact Generator"}  target='_blank'><i className='fa fa-twitter-square' aria-hidden='true'></i><span className='twitterText'> Tweet</span></a>
-          </span> 
-        </div>    
+            <a
+              href={
+                'https://twitter.com/intent/tweet?text=' +
+                this.state.resultFact +
+                ' - Random Cat Fact Generator'
+              }
+              target="_blank"
+            >
+              <i className="fa fa-twitter-square" aria-hidden="true" />
+              <span className="twitterText"> Tweet</span>
+            </a>
+          </span>
+        </div>
       </div>
     );
   }
 }
-
 
 export default App;
